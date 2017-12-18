@@ -14,6 +14,18 @@ IF(UNIX)
   TARGET_LINK_LIBRARIES(g2o_cli_library dl)
 ENDIF(UNIX)
 
+ADD_LIBRARY(g2o_cli_dll_library ${G2O_LIB_TYPE}
+  dl_wrapper.cpp dl_wrapper.h
+  callbackstreaminterceptor.cpp callbackstreaminterceptor.h
+  g2o_dll.cpp g2o_dll.h
+)
+
+SET_TARGET_PROPERTIES(g2o_cli_dll_library PROPERTIES OUTPUT_NAME g2o)
+
+SET_PROPERTY(TARGET g2o_cli_dll_library APPEND PROPERTY COMPILE_DEFINITIONS G2O_DEFAULT_TYPES_DIR_="${CMAKE_LIBRARY_OUTPUT_DIRECTORY}" G2O_DEFAULT_SOLVERS_DIR_="${CMAKE_LIBRARY_OUTPUT_DIRECTORY}")
+
+TARGET_LINK_LIBRARIES(g2o_cli_dll_library g2o_cli_library)
+
 ADD_EXECUTABLE(g2o_cli_application
   g2o.cpp)
 
@@ -29,7 +41,7 @@ SET_PROPERTY(TARGET g2o_cli_library APPEND PROPERTY COMPILE_DEFINITIONS_MINSIZER
 SET_TARGET_PROPERTIES(g2o_cli_application PROPERTIES OUTPUT_NAME g2o${EXE_POSTFIX})
 
 
-INSTALL(TARGETS g2o_cli_library g2o_cli_application
+INSTALL(TARGETS g2o_cli_library g2o_cli_application g2o_cli_dll_library
   RUNTIME DESTINATION ${CMAKE_INSTALL_PREFIX}/bin
   LIBRARY DESTINATION ${CMAKE_INSTALL_PREFIX}/lib
   ARCHIVE DESTINATION ${CMAKE_INSTALL_PREFIX}/lib
