@@ -1,7 +1,8 @@
 g2o - General Graph Optimization
 ================================
 
-[![Build Status](https://travis-ci.org/RainerKuemmerle/g2o.svg?branch=master)](https://travis-ci.org/RainerKuemmerle/g2o)
+Linux: [![Build Status](https://travis-ci.org/RainerKuemmerle/g2o.svg?branch=master)](https://travis-ci.org/RainerKuemmerle/g2o)
+Windows: [![Build status](https://ci.appveyor.com/api/projects/status/9w0cpb9krc6t4nt7/branch/master?svg=true)](https://ci.appveyor.com/project/RainerKuemmerle/g2o/branch/master)
 
 g2o is an open-source C++ framework for optimizing graph-based nonlinear error
 functions. g2o has been designed to be easily extensible to a wide range of
@@ -28,6 +29,10 @@ Kurt Konolige, and Wolfram Burgard
 g2o: A General Framework for Graph Optimization
 IEEE International Conference on Robotics and Automation (ICRA), 2011
 http://ais.informatik.uni-freiburg.de/publications/papers/kuemmerle11icra.pdf
+
+### Documentation
+A detailed description of how the library is structured and how to use and extend it can be found in /doc/g2o.pdf
+The API documentation can be generated as described in doc/doxygen/readme.txt
 
 ### License
 g2o is licensed under the BSD License. However, some libraries are available
@@ -66,20 +71,32 @@ licenses for more details.
 
 
 ### Requirements
-g2o requires cmake and Eigen3 to build. The other requirements are optional.
-  * cmake             http://www.cmake.org/
-  * Eigen3            http://eigen.tuxfamily.org
-  * suitesparse       http://www.cise.ufl.edu/research/sparse/SuiteSparse/
-  * Qt5               http://qt-project.org
-  * libQGLViewer      http://www.libqglviewer.com/
+* cmake             http://www.cmake.org/
+* Eigen3            http://eigen.tuxfamily.org
 
-  On Ubuntu / Debian these dependencies are resolved by installing the
-  following packages.
-    - cmake
-    - libeigen3-dev
-    - libsuitesparse-dev
-    - Qt4: `libqt4-dev`, `qt4-qmake`, `libqglviewer-dev` (Or `libqglviewer-qt4-dev` in modern distributions)
-    - Qt5: `libqt5-dev`, `qt5-qmake`, `libqglviewer-dev`
+On Ubuntu / Debian these dependencies are resolved by installing the
+following packages.
+  - cmake
+  - libeigen3-dev
+
+#### Optional requirements
+* suitesparse       http://www.cise.ufl.edu/research/sparse/SuiteSparse/
+* Qt5               http://qt-project.org
+* libQGLViewer      http://www.libqglviewer.com/
+
+On Ubuntu / Debian these dependencies are resolved by installing the
+following packages.
+- libsuitesparse-dev
+- qtdeclarative5-dev
+- qt5-qmake
+- libqglviewer-dev
+
+#### Mac OS X
+If using [Homebrew](http://brew.sh/), then
+
+`brew install homebrew/science/g2o`
+
+will install g2o together with its required dependencies. In this case no manual compilation is necessary.
 
 ### Compilation
 Our primary development platform is Linux. Experimental support for
@@ -110,6 +127,8 @@ We thank the following contributors for providing patches:
 - Michael A. Eriksen for submitting patches to compile with MSVC.
 - Mark Pupilli for submitting patches to compile with MSVC.
 
+### Projects using g2o
+- [.Net wrapper](https://github.com/fugro/g2o)
 
 ### Contact information
 Rainer Kuemmerle <kuemmerl@informatik.uni-freiburg.de>   
